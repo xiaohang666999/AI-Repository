@@ -2,7 +2,10 @@
 	position: fixed;
 	top: 10px;
 	left: 10px;
-	border: none;
+	border: 1px solid var(--panel-border);
+	border-radius: 16px;
+	box-shadow: var(--panel-shadow);
+	overflow: hidden;
 	transition: all 1s;
 	.map-container {
 		transition: all 1s;
@@ -31,6 +34,8 @@
 	justify-content: space-evenly;
 	color: white;
 	background-color: var(--sub-panel-color);
+	backdrop-filter: var(--panel-blur);
+	-webkit-backdrop-filter: var(--panel-blur);
 
 	.bestof {
 		width: 121px;

@@ -1,6 +1,13 @@
 #scout {
     width: 512.5px;
     background-color: var(--sub-panel-color);
+    background-image: var(--panel-highlight);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--panel-radius);
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: var(--panel-blur);
+    -webkit-backdrop-filter: var(--panel-blur);
+    box-sizing: border-box;
     padding: 10px;
     position: fixed;
     left: 50%;
@@ -18,6 +25,8 @@
         width: 100%;
         height: 29px;
         display: flex;
+        border-radius: 8px;
+        overflow: hidden;
 
         .bar {
             position: relative;

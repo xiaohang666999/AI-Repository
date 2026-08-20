@@ -10,7 +10,16 @@
 	font-size: 13px;
 	.veto_container {
 		display: flex;
-		background-color: rgba(0,0,0,0.8);
+		background-color: var(--sub-panel-color);
+		background-image: var(--panel-highlight);
+		border: 1px solid var(--panel-border);
+		border-radius: 10px;
+		box-shadow: var(--panel-shadow);
+		backdrop-filter: var(--panel-blur);
+		-webkit-backdrop-filter: var(--panel-blur);
+		box-sizing: border-box;
+		overflow: hidden;
+		margin-bottom: 4px;
 		color: white;
 		align-items: center;
         height: 40px;
@@ -86,13 +95,21 @@
 	}
 	.title_bar {
 		display: flex;
-		background-color: rgba(0,0,0,0.64);
+		background-color: var(--sub-panel-color);
+		background-image: var(--panel-highlight);
+		border: 1px solid var(--panel-border);
+		box-shadow: var(--panel-shadow);
+		backdrop-filter: var(--panel-blur);
+		-webkit-backdrop-filter: var(--panel-blur);
+		box-sizing: border-box;
 		height: 25px;
-		color: white;
-		border-radius: 6px 6px 0 0;
+		color: rgba(255, 255, 255, 0.85);
+		border-radius: 10px;
 		font-family: Montserrat;
-		font-size: 13px;
-		font-weight: 600;
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1px;
 		margin-bottom: 2px;
 		div {
 			width: 77px;
@@ -116,12 +133,21 @@
 	transform: translateX(-50%);
 	top: 150px;
 	background-color: var(--sub-panel-color);
+	background-image: var(--panel-highlight);
+	border: 1px solid var(--panel-border);
+	border-radius: 16px;
+	box-shadow: var(--panel-shadow);
+	backdrop-filter: var(--panel-blur);
+	-webkit-backdrop-filter: var(--panel-blur);
+	box-sizing: border-box;
 	width: 600px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100px;
-	font-size: 35px;
+	font-size: 34px;
+	font-weight: 700;
+	letter-spacing: 3px;
 	transition: opacity 1.5s;
 	opacity: 0;
 }
@@ -132,12 +158,21 @@
 	transform: translateX(-50%);
 	top: 150px;
 	background-color: var(--sub-panel-color);
+	background-image: var(--panel-highlight);
+	border: 1px solid var(--panel-border);
+	border-radius: 16px;
+	box-shadow: var(--panel-shadow);
+	backdrop-filter: var(--panel-blur);
+	-webkit-backdrop-filter: var(--panel-blur);
+	box-sizing: border-box;
 	width: 600px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100px;
-	font-size: 35px;
+	font-size: 34px;
+	font-weight: 700;
+	letter-spacing: 3px;
 	transition: opacity 1.5s;
 	opacity: 0;
 	color: white;

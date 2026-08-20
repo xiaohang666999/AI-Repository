@@ -36,20 +36,33 @@ code {
 }
 
 :root {
-  --main-panel-color: rgba(12, 15, 18, 0.85);
-  --sub-panel-color: rgba(0, 0, 0, 0.83);
-  --white-dull: rgba(10, 5, 5, 0.25);
+  /* ===== CS2 Fresh 主题 ===== */
+  /* 面板：深色玻璃拟态 */
+  --main-panel-color: rgba(17, 23, 31, 0.78);
+  --sub-panel-color: rgba(17, 23, 31, 0.78);
+  --panel-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 60%);
+  --panel-border: rgba(255, 255, 255, 0.10);
+  --panel-radius: 12px;
+  --panel-blur: blur(10px) saturate(160%);
+  --panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+
+  /* 文本 */
+  --white-dull: rgba(255, 255, 255, 0.28);
   --white-full: rgba(250, 250, 250, 1);
-  --white-half: rgba(250, 250, 250, 0.5);
-  --color-gray: rgba(191, 191, 191, 1.0);
-  --color-moneys: #a7d32e;
+  --white-half: rgba(250, 250, 250, 0.55);
+  --color-gray: rgba(196, 200, 206, 1.0);
+
+  /* 功能色 */
+  --color-moneys: #8fd14e;
   --dev-purple: rgba(200, 0, 255, 1);
-  --color-t: #c19511;
-  --color-ct: #5788a8;
-  --color-new-t: #f0c941;
-  --color-new-ct: #5ab8f4;
-  --color-bomb: #f22222;
-  --color-defuse: #2222f2;
+  --color-bomb: #ff5a55;
+  --color-defuse: #4d7cfe;
+
+  /* CS2 队伍色：清新 CT 蓝 / 琥珀 T 黄 */
+  --color-t: #d9a83e;
+  --color-ct: #5d8ea8;
+  --color-new-t: #f5c242;
+  --color-new-ct: #67b7f0;
 }
 
 

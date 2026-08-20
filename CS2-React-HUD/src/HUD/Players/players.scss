@@ -21,6 +21,9 @@
     &.left {
         left: 10px;
         .player {
+            .player_data {
+                border-radius: var(--panel-radius);
+            }
             .row {
                 flex-direction: row;
                 .grenades {
@@ -60,6 +63,9 @@
         right: 10px;
         .player {
             flex-direction: row-reverse;
+            .player_data {
+                border-radius: var(--panel-radius);
+            }
             .dead-stats {
                 left: 8px;
             }
@@ -102,17 +108,19 @@
     .player {
         width: 645px;
         height: 70px;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         display: flex;
         flex-direction: row;
         align-items: center;
         &.active {
             .player_data {
-                border: 2px solid white;
+                border: 2px solid rgba(255, 255, 255, 0.9);
+                box-shadow: var(--panel-shadow), 0 0 14px rgba(255, 255, 255, 0.30);
             }
         }
         &.dead {
-            opacity: 0.7;
+            opacity: 0.65;
+            filter: saturate(0.75);
             .player_side_bar {
                 background-color: var(--main-panel-color) !important;
             }
@@ -128,24 +136,21 @@
                         opacity: 0;
                     }
                     .health {
-                        color: #b2b2b2;
+                        color: var(--white-half);
                         overflow: hidden;
                     }
                     .username {
-                        color: #b2b2b2;
+                        color: var(--white-half);
                     }
                     .armor_and_utility {
                         width: 0px;
                         overflow: hidden;
                     }
                     .money {
-                        color: #466722;
+                        color: #59831f;
                     }
                 }
             }
-        }
-        &:last-child .player_data {
-            border-radius: 0 0 20px 20px;
         }
         .player_side_bar {
             width: 10px;
@@ -181,6 +186,12 @@
         }
         .player_data {
             background-color: var(--sub-panel-color);
+            background-image: var(--panel-highlight);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--panel-shadow);
+            backdrop-filter: var(--panel-blur);
+            -webkit-backdrop-filter: var(--panel-blur);
+            box-sizing: border-box;
             width: 415px;
             display: flex;
             flex-direction: row;
@@ -192,9 +203,11 @@
                 flex: 1;
                 min-width: 0;
                 .hp_bar {
-                    height: 2px;
+                    height: 4px;
+                    border-radius: 2px;
+                    transition: width 0.3s ease;
                     &.low {
-                        background-color: red;
+                        background-color: var(--color-bomb);
                     }
                 }
                 .row {
@@ -336,7 +349,14 @@
     display: flex;
     flex-direction: column;
     width: 180px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: var(--sub-panel-color);
+    background-image: var(--panel-highlight);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--panel-radius);
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: var(--panel-blur);
+    -webkit-backdrop-filter: var(--panel-blur);
+    overflow: hidden;
     position: fixed;
     right: 10px;
     top: 10px;
@@ -351,11 +371,12 @@
             align-items: center;
             justify-content: center;
             font-size:30px;
+            font-weight: 700;
             color: white;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(255,255,255,0.03);
         }
         .team_counter {
-            background-color: rgba(0,0,0,0.75);
+            background-color: rgba(0,0,0,0.25);
         }
         .CT {
             color: var(--color-new-ct);
@@ -365,15 +386,17 @@
         }
     }
     .title_container {
-        color: white;
+        color: var(--white-half);
         text-transform: uppercase;
+        letter-spacing: 1.5px;
         text-align: center;
         height:20px;
-        font-size:14px;
+        font-size:12px;
+        font-weight: 600;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0,0,0,0.75);
+        background-color: rgba(0,0,0,0.25);
     }
     &.hide {
         opacity: 0;

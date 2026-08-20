@@ -1,7 +1,13 @@
 .player-overview {
 	position: fixed;
 	top: 130px;
-	background-color: #000000a8;
+	background-color: var(--sub-panel-color);
+	background-image: var(--panel-highlight);
+	border: 1px solid var(--panel-border);
+	border-radius: 16px;
+	box-shadow: var(--panel-shadow);
+	backdrop-filter: var(--panel-blur);
+	-webkit-backdrop-filter: var(--panel-blur);
 	left: 50%;
 	transform: translateX(-50%);
 	width: 300px;
@@ -20,8 +26,11 @@
 	.panel {
 		height: 10px;
 		margin: 3px 0;
+		border-radius: 5px;
+		overflow: hidden;
 		.filling {
 			height: 100%;
+			border-radius: 5px;
 		}
 	}
 }
@@ -31,7 +40,7 @@
 			.filling {
 				background-color: var(--color-new-ct);
 			}
-			background-color: #082435;
+			background-color: rgba(103, 183, 240, 0.15);
 		}
 	}
 }
@@ -41,7 +50,7 @@
 			.filling {
 				background-color: var(--color-new-t);
 			}
-			background-color: #331b00;
+			background-color: rgba(245, 194, 66, 0.15);
 		}
 	}
 }

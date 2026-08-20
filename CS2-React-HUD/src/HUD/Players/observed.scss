@@ -8,7 +8,15 @@
     display: flex;
     flex-direction: column;
     color: white;
-    background-color: rgba(0,0,0,0.6);
+    background-color: var(--main-panel-color);
+    background-image: var(--panel-highlight);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: var(--panel-blur);
+    -webkit-backdrop-filter: var(--panel-blur);
+    overflow: hidden;
+    box-sizing: border-box;
 
     .main_row, .stats_row {
         flex: 1;
@@ -35,7 +43,8 @@
                 align-items: center;
                 justify-content: center;
                 font-size: 10px;
-                color: #b2b2b2;
+                letter-spacing: 0.5px;
+                color: var(--white-half);
             }
 
             .stat {
@@ -160,14 +169,17 @@
         
     }
     .sidebar {
-        width: 10px;
-        height: 100%;
+        width: 6px;
+        height: calc(100% - 40px);
         position: absolute;
+        top: 20px;
         &:first-child {
-            left: -10px;
+            left: 8px;
+            border-radius: 3px;
         }
         &:last-child {
-            right: -10px;
+            right: 8px;
+            border-radius: 3px;
         }
     }
     .flag {

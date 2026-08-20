@@ -32,15 +32,23 @@
     .single_kill {
         display: flex;
         flex-direction: row;
-        background-color: rgba(0,0,0,0.64);
-        margin-bottom:5px;
+        background-color: var(--main-panel-color);
+        background-image: var(--panel-highlight);
+        border: 1px solid var(--panel-border);
+        border-radius: 10px;
+        box-shadow: var(--panel-shadow);
+        backdrop-filter: var(--panel-blur);
+        -webkit-backdrop-filter: var(--panel-blur);
+        box-sizing: border-box;
+        margin-bottom:6px;
         color:white;
         height: 38px;
         font-size: 14px;
         overflow: hidden;
         align-items: center;
         font-family: Montserrat;
-        font-weight:500;
+        font-weight:600;
+        letter-spacing: 0.3px;
         padding-left:15px;
         padding-right:15px;
 
