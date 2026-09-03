@@ -11,7 +11,9 @@
     "pack": "npm run build && npm run zip",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "sign": "npm run build && node sign.js && npm-build-zip --name=signed"
+    "sign": "npm run build && node sign.js && npm-build-zip --name=signed",
+    "demo": "vite --config vite.demo.config.ts --host",
+    "demo:build": "node scripts/build-demo.mjs"
   },
   "dependencies": {
     "csgogsi": "^3.0.5",
