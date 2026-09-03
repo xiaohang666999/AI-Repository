@@ -2,7 +2,7 @@
 	position: absolute;
 	margin-left: 50%;
 	transform: translateX(-50%);
-	background-color: rgba(0,0,0,0.85);
+	background-color: var(--panel-0);
 	top: 200px;
 	opacity: 0;
 	transition: opacity 1s;
@@ -68,7 +68,7 @@
 	position: absolute;
 	right: 0;
 	height: 50%;
-	background-color: #ffd700;
+	background-color: var(--color-new-t);
 	width: 1px;
 }
 .bracket-details {
@@ -103,7 +103,7 @@
 		flex-direction: column;
 		width: 200px;
 		margin: 10px 20px;
-		background: rgba(0,0,0,0.5);
+		background: var(--panel-1);
 		border-radius: 2px;
 		padding: 5px;
 		z-index: 1;
@@ -118,7 +118,7 @@
 	width: 100%;
 	position: absolute;
 	height: 1px;
-	background: #ffd700;
+	background: var(--color-new-t);
 }
 .match-connector.last-match {
 	width: 220px;
@@ -143,5 +143,5 @@
 	padding-left: 22px;
 }
 .match-details.current {
-	border: 1px solid gold;
+	border: 1px solid var(--color-new-t);
 }

@@ -1,27 +1,40 @@
+/* Trivia card — flat CS2 style */
 .trivia_container {
-    position: absolute;
-    left:20px;
-    background-color:black;
-    color: white;
-    width: 450px;
-    top:830px;
-    opacity:1;
-    transition: opacity 1s;
-    
-    font-size: 16pt;
-}
-.trivia_container .title {
-    height: 30px;
+  position: absolute;
+  left: 16px;
+  top: 830px;
+  z-index: 7;
+  width: 430px;
+  box-sizing: border-box;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-left: 3px solid var(--color-new-t);
+  border-radius: 3px;
+  color: var(--text-strong);
+  opacity: 1;
+  transition: opacity 0.8s ease;
+  font-size: 15px;
+  padding: 14px 18px;
+
+  .title {
     display: flex;
     align-items: center;
-    padding-left:30px;
-    font-weight:bold;
-    padding-top:10px;
-}
-.trivia_container .content {
-    padding-left:30px;
-    padding-bottom:15px;
-}
-.trivia_container.hide {
-    opacity:0;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--color-new-t);
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .content {
+    line-height: 1.45;
+    color: var(--text-mid);
+  }
+
+  &.hide {
+    opacity: 0;
+  }
 }

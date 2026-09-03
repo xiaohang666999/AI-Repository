@@ -27,9 +27,12 @@ const TeamScore = ({orientation, timer, team }: IProps) => {
     return (
       <>
         <div className={`team ${orientation} ${team.side || ''}`}>
-          <div className="team-name">{team?.name || null}</div>
-          <TeamLogo team={team} />
-          <div className="round-thingy"><div className="inner"></div></div>
+          <TeamLogo team={team} height={30} width={30} />
+          <div className="meta">
+            <div className="team-name">{team?.name || null}</div>
+            <div className="team-side">{team.side === "CT" ? "Counter-Terrorists" : "Terrorists"}</div>
+          </div>
+          <div className="score">{team.score || 0}</div>
         </div>
         <PlantDefuse timer={timer} side={orientation} />
         <WinAnnouncement team={team} show={show} />

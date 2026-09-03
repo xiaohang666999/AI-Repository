@@ -1,4 +1,45 @@
 @import "fonts/montserrat.css";
+
+:root {
+  /* ── Base surfaces: flat, layered, near-black ─────────────── */
+  --bg-canvas: #06080c;
+  --panel-0: #0c1017; /* deepest surface  */
+  --panel-1: #141a24; /* raised card      */
+  --panel-2: #1c2431; /* raised / active  */
+  --stroke: rgba(255, 255, 255, 0.07);
+  --stroke-strong: rgba(255, 255, 255, 0.16);
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --text-strong: #f4f7fb;
+  --text-mid: #c3ccd7;
+  --text-dim: #7b8694;
+
+  /* ── CS2 broadcast palette ────────────────────────────────── */
+  --color-new-ct: #5ca3ff; /* Counter-Terrorist blue   */
+  --color-new-t: #ffc23d; /* Terrorist gold           */
+  --color-moneys: #96d84b; /* economy green            */
+  --color-bomb: #f2473f; /* bomb / danger red        */
+  --color-defuse: #5ca3ff;
+
+  /* ── Legacy aliases (keep untouched styles working) ───────── */
+  --main-panel-color: rgba(10, 14, 20, 0.94);
+  --sub-panel-color: #10151e;
+  --white-full: #f4f7fb;
+  --white-half: rgba(244, 247, 251, 0.55);
+  --color-gray: #c3ccd7;
+  --color-ct: #5ca3ff;
+  --color-t: #ffc23d;
+  --dev-purple: #c200ff;
+
+  /* ── Top scoreboard geometry ──────────────────────────────── */
+  --sb-top: 26px;
+  --sb-gap: 8px;
+  --sb-w: 848px; /* 356 + 8 + 120 + 8 + 356 */
+  --team-w: 356px;
+  --timer-w: 120px;
+  --timer-h: 100px;
+}
+
 html,
 body,
 #root {
@@ -8,49 +49,38 @@ body,
 
 body {
   margin: 0;
-  font-family: "Rajdhani", 'Montserrat', 'Roboto', sans-serif;
+  overflow: hidden;
+  font-family: "Montserrat", "Rajdhani", "Roboto", sans-serif;
+  font-weight: 500;
+  color: var(--text-strong);
+  background: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url('./assets/bg.png');/**/
+  font-variant-numeric: tabular-nums;
 }
 
 @font-face {
-  font-family: 'Louis George Cafe';
-  src: local('Louis George Cafe'), url('./fonts/Louis George Cafe.ttf') format('truetype');
+  font-family: "Louis George Cafe";
+  src: local("Louis George Cafe"), url("./fonts/Louis George Cafe.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Rounded_Elegance';
-  src: local('Rounded_Elegance'), url('./fonts/Rounded_Elegance.ttf') format('truetype');
+  font-family: "Rounded_Elegance";
+  src: local("Rounded_Elegance"), url("./fonts/Rounded_Elegance.ttf") format("truetype");
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .layout {
   width: 100%;
   height: 100%;
-  perspective: 500px;
 }
 
-:root {
-  --main-panel-color: rgba(12, 15, 18, 0.85);
-  --sub-panel-color: rgba(0, 0, 0, 0.83);
-  --white-dull: rgba(10, 5, 5, 0.25);
-  --white-full: rgba(250, 250, 250, 1);
-  --white-half: rgba(250, 250, 250, 0.5);
-  --color-gray: rgba(191, 191, 191, 1.0);
-  --color-moneys: #a7d32e;
-  --dev-purple: rgba(200, 0, 255, 1);
-  --color-t: #c19511;
-  --color-ct: #5788a8;
-  --color-new-t: #f0c941;
-  --color-new-ct: #5ab8f4;
-  --color-bomb: #f22222;
-  --color-defuse: #2222f2;
+/* Shared flat UI atoms */
+.hud-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
-
-
-
