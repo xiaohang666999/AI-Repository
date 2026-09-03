@@ -1,42 +1,62 @@
 .match-overview {
-	opacity: 0;
-	transition: opacity 0.75s;
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	right: 10px;
-	top: 375px;
-	background-color: #000000a8;
-	text-transform: uppercase;
-	width: 250px;
-	color: white;
+  opacity: 0;
+  transition: opacity 0.75s;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  right: 16px;
+  top: 340px;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-radius: 3px;
+  text-transform: uppercase;
+  width: 260px;
+  color: var(--text-strong);
+  overflow: hidden;
+
+  &.show {
+    opacity: 1;
+  }
 }
-.match-overview.show {
-	opacity: 1;
-}
+
 .match-overview-teams {
-	display: flex;
-	>div {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		padding: 5px 0;
-		&:not(.match-overview-vs) {
-			background-color: rgba(0,0,0,0.7);
-		}
-	}
+  display: flex;
+
+  > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 6px;
+
+    &:not(.match-overview-vs) {
+      background: var(--panel-1);
+    }
+  }
 }
+
 .match-overview-title {
-	text-align: center;
-	font-weight: 600;
-	background-color: rgba(0,0,0,0.5);
-	padding: 3px 0;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  padding: 7px 0;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--stroke);
 }
+
 .match-overview-vs {
-	width: 20px;
-	flex: unset;
-	background-color: rgba(0,0,0,0.6);
-	font-size: 30px;
+  width: 26px;
+  flex: unset;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-dim);
+}
+
+.match-overview-team-name {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }

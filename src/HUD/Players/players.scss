@@ -1,381 +1,435 @@
+/* ──────────────────────────────────────────────────────────────
+   CS2-style bottom player boxes
+   Each player card = a flat panel whose background "health fill"
+   (hp_fill) directly visualizes the player's HP.
+   ────────────────────────────────────────────────────────────── */
+
 .teambox {
-    position: fixed;
-    bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-    transition: opacity 0.75s;
-    &.CT {
-        .player .hp_bar {
-            background-color: var(--color-new-ct);
-        }
-    }
-    &.T {
-        .player .hp_bar {
-            background-color: var(--color-new-t);
-        }
-    }
-    &.hide {
-        opacity: 0;
-    }
-    &.left {
-        left: 10px;
-        .player {
-            .row {
-                flex-direction: row;
-                .grenades {
-                    padding-right: 5px;
-                }
-                
-                .armor_and_utility {
-                    justify-content: flex-start;
-                }
-                .money {
-                    margin-right: auto;
-                }
-                .username .roundkills-container {
-                    right: 115px;
-                }
-                .secondary_weapon {
-                    padding-right: 10px;
-                }
-                
-            }
-            .dead-stats {
-                right: 8px;
-            }
-        }
-    }
-    .weapon.zeus {
-        height: 30px;
-        position: absolute;
-        &.left {
-            left: 170px;
-        }
-        &.right {
-            right: 170px;
-        }
-    }
-    &.right {
-        right: 10px;
-        .player {
-            flex-direction: row-reverse;
-            .dead-stats {
-                left: 8px;
-            }
-            .player_data {
-                flex-direction: row-reverse;
-                .hp_bar {
-                    align-self: flex-end;
-                }
-                .row {
-                    flex-direction: row-reverse;
-                    .grenades {
-                        padding-left: 5px;
-                    }
-                    .username {
-                        flex-direction: row-reverse;
-                        .roundkills-container {
-                            left: 115px;
-                        }
-                    }
-                    .secondary_weapon {
-                        padding-left: 10px;
-                    }
-                    .armor_and_utility {
-                        justify-content: flex-end;
-                    }
-                    .money {
-                        margin-left: auto;
-                        justify-content: flex-end;
-                    } 
-                    .weapon {
-                        transform: scaleX(-1);
-                    }
-                }
-                .avatar {
-                    justify-content: flex-start;
-                }
-            }
-        }
-    }  
-    .player {
-        width: 645px;
-        height: 70px;
-        margin-bottom: 4px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        &.active {
-            .player_data {
-                border: 2px solid white;
-            }
-        }
-        &.dead {
-            opacity: 0.7;
-            .player_side_bar {
-                background-color: var(--main-panel-color) !important;
-            }
-            .player_data {
-                .avatar {
-                    filter: grayscale(100%);
-                }
-                .dead-stats {
-                    display: flex;
-                }
-                .row {
-                    .hp_background_2 {
-                        opacity: 0;
-                    }
-                    .health {
-                        color: #b2b2b2;
-                        overflow: hidden;
-                    }
-                    .username {
-                        color: #b2b2b2;
-                    }
-                    .armor_and_utility {
-                        width: 0px;
-                        overflow: hidden;
-                    }
-                    .money {
-                        color: #466722;
-                    }
-                }
-            }
-        }
-        &:last-child .player_data {
-            border-radius: 0 0 20px 20px;
-        }
-        .player_side_bar {
-            width: 10px;
-            height: 70px;
-            &.CT {
-                background-color: var(--color-new-ct);
-            }
-            &.T {
-                background-color: var(--color-new-t);
-            }
-        }
-        .dead-stats {
-            position: absolute;
-            height: 85%;
-            width: 60px;
-            display: none;
-            flex-direction: column;
-            font-weight: 600;
-            color: white;
-            opacity: 0.75;
-            top: 10%;
-            .labels, .values {
-                display: flex;
-                flex-direction: row;
-                flex: 1;
-                .stat-label, .stat-value {
-                    display: flex;
-                    flex: 1;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
-        }
-        .player_data {
-            background-color: var(--sub-panel-color);
-            width: 415px;
-            display: flex;
-            flex-direction: row;
-            position: relative;
-            height: 100%;
-            .player_stats {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-                min-width: 0;
-                .hp_bar {
-                    height: 2px;
-                    &.low {
-                        background-color: red;
-                    }
-                }
-                .row {
-                    flex: 1;
-                    display: flex;
-                    position: relative;
-                    svg.weapon {
-                        filter: invert(45%);
-                        &.active {
-                            filter: invert(0);
-                        }
-                    }
-                    .hp_background, .hp_background_2 {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        z-index: 0;
-                    }
-                    .hp_background_2 {
-                        background-color: var(--color-bomb);
-                        transition: width 0.75s 1.5s;
-                    }
-                    .armor_and_utility {
-                        width: 39px;
-                        display: flex;
-                        align-items: center;
-                        padding-left: 5px;
-                        padding-right: 5px;
-                        .armor_indicator, .bomb_indicator, .defuse_indicator {
-                            svg {
-                                max-height: 20px;
-                                fill: white;
-                            }
-                        }
-                        div {
-                            display: flex;
-                            width: 50%;
-                        }
-                    }
-                    .username {
-                        flex: 1;
-                        display: flex;
-                        align-items: center;
-                        z-index: 1;
-                        color: white;
-                        font-weight: 600;
-                        max-width: calc(100% - 49px);
-                        justify-content: space-between;
-                        overflow: hidden;
-                        font-size: 18px;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        .roundkills-container {
-                            position: absolute;
-                            background-image: url('./../../assets/images/icon_skull_default.svg');
-                            background-repeat: no-repeat;
-                            background-size: 10px;
-                            background-position: left 2px;
-                            padding-left: 16px;
-                            font-size: 13px;
-                        }
-                        div span {
-                            opacity: 0.6;
-                            font-size:15px;
-                        }
-                        svg.weapon {
-                            max-height: 30px;
-                            width: auto;
-                            margin-left: 5px;
-                            margin-right: 5px;
-                            max-width: 100px;
-                            height: 30px;
-                        }
-                    }
-                    .money {
-                        width: 60px;
-                        color: var(--color-moneys);
-                        font-weight: 600;
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-start;
-                    }
-                    .grenades {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-around;
-                        svg.grenade {
-                            max-height: 20px;
-                            height: 20px;
-                        }
-                    }
-                    .health {
-                        width: 49px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 1;
-                        color: white;
-                        font-weight: 600;
-                        font-size:18px;
-                    }
-                    .secondary_weapon {
-                        display: flex;
-                        align-items: center;
-                        svg {
-                            max-height: 30px;
-                            height: 30px;
-                        }
-                    }
-                }
-            }
-            .avatar {
-                width: 70px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                overflow: hidden;
-                position: relative;
-                .videofeed {
-                    width:70px;
-                    height:70px;
-                    position: absolute;
-                    display: flex;
-                    justify-content: center;
-                    video {
-                        height: 70px;
-                        position: absolute;
-                    }
-                }
-                img {
-                    border-radius:50%;
-                }
-            }
-        }
-    }
+  position: fixed;
+  bottom: 12px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+
+  &.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.left {
+    left: 16px;
+    align-items: flex-start;
+  }
+
+  &.right {
+    right: 16px;
+    align-items: flex-end;
+  }
 }
 
-.players_alive {
+.player {
+  position: relative;
+  width: 470px;
+  height: 60px;
+  flex: 0 0 auto;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-radius: 3px;
+  overflow: hidden;
+
+  /* ── Health layer: fills the whole card background ───────── */
+  .hp_fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+    transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    &.low {
+      border-right: 2px solid var(--color-bomb);
+    }
+  }
+
+  .player_data {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .avatar_col {
+    flex: 0 0 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--panel-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .info_col {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    width: 180px;
-    background-color: rgba(0,0,0,0.5);
-    position: fixed;
-    right: 10px;
-    top: 10px;
-    opacity: 1;
-    transition: opacity 1s;
-    .counter_container {
-        display: flex;
-        height: 45px;
-        > div {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size:30px;
-            color: white;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .team_counter {
-            background-color: rgba(0,0,0,0.75);
-        }
-        .CT {
-            color: var(--color-new-ct);
-        }
-        .T {
-            color: var(--color-new-t);
-        }
+    justify-content: center;
+    gap: 4px;
+    padding: 0 14px 0 2px;
+  }
+
+  .row_top,
+  .row_bot {
+    display: flex;
+    align-items: center;
+  }
+
+  .row_top {
+    gap: 8px;
+    height: 22px;
+
+    .hp_text {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-strong);
+      min-width: 24px;
+      flex: 0 0 auto;
+
+      &.low {
+        color: var(--color-bomb);
+      }
     }
-    .title_container {
-        color: white;
-        text-transform: uppercase;
-        text-align: center;
-        height:20px;
-        font-size:14px;
+
+    .name {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      color: var(--text-strong);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      flex: 0 1 auto;
+      max-width: 190px;
+    }
+
+    .main_weapon {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+
+      svg.weapon {
+        height: 22px;
+        max-width: 92px;
+        width: auto;
+        color: #fff;
+      }
+    }
+
+    .rk {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-mid);
+
+      .skull {
+        display: inline-block;
+        width: 11px;
+        height: 11px;
+        background: url("./../../assets/images/icon_skull_default.svg") center / contain no-repeat;
+        opacity: 0.85;
+      }
+    }
+
+    .row_spacer {
+      flex: 1;
+    }
+
+    .slot {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dim);
+      min-width: 14px;
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .money {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-moneys);
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+  }
+
+  .row_bot {
+    gap: 12px;
+    height: 16px;
+
+    .state_icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .armor_indicator,
+      .bomb_indicator,
+      .defuse_indicator {
         display: flex;
         align-items: center;
-        justify-content: center;
-        background-color: rgba(0,0,0,0.75);
+
+        svg {
+          height: 14px;
+          width: auto;
+          fill: var(--text-mid);
+        }
+      }
     }
-    &.hide {
-        opacity: 0;
+
+    .loadout {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow: hidden;
+
+      svg.weapon {
+        height: 15px;
+        max-width: 60px;
+        width: auto;
+        color: #fff;
+        opacity: 0.55;
+        flex: 0 0 auto;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+
+      .secondary_wrap {
+        display: flex;
+        align-items: center;
+      }
     }
+
+    .kd_stats {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+
+      span {
+        b {
+          margin-left: 1px;
+          font-weight: 700;
+          color: var(--text-mid);
+        }
+      }
+    }
+  }
+
+  /* ── Observed / spectated player ─────────────────────────── */
+  &.active {
+    border-color: var(--stroke-strong);
+
+    .avatar_col .avatar {
+      box-shadow: 0 0 0 2px currentColor;
+    }
+  }
+
+  /* ── Dead state: flat grey panel, K/A/D shown ────────────── */
+  &.dead {
+    opacity: 0.62;
+
+    .hp_fill {
+      display: none;
+    }
+
+    .avatar_col .avatar img {
+      filter: grayscale(1);
+      opacity: 0.55;
+    }
+
+    .row_top {
+      .hp_text,
+      .name {
+        color: var(--text-dim);
+      }
+
+      .money {
+        color: var(--text-dim);
+      }
+    }
+
+    .row_bot .state_icons svg,
+    .row_bot .loadout svg.weapon {
+      opacity: 0.25;
+    }
+  }
+}
+
+/* side accents on the card itself */
+.teambox.CT .player .hp_fill:not(.low) {
+  background: rgba(92, 163, 255, 0.14);
+  border-right-color: var(--color-new-ct);
+}
+.teambox.T .player .hp_fill:not(.low) {
+  background: rgba(255, 194, 61, 0.16);
+  border-right-color: var(--color-new-t);
+}
+.teambox.CT .player .hp_fill.low {
+  background: rgba(242, 71, 63, 0.13);
+}
+.teambox.T .player .hp_fill.low {
+  background: rgba(242, 71, 63, 0.13);
+}
+
+.teambox.CT .player.active {
+  .avatar_col .avatar {
+    box-shadow: 0 0 0 2px var(--color-new-ct);
+  }
+  border-color: var(--color-new-ct);
+}
+.teambox.T .player.active {
+  .avatar_col .avatar {
+    box-shadow: 0 0 0 2px var(--color-new-t);
+  }
+  border-color: var(--color-new-t);
+}
+
+/* right-side team mirror */
+.teambox.right {
+  .player {
+    .hp_fill {
+      left: auto;
+      right: 0;
+
+      &:not(.low) {
+        border-right: none;
+        border-left: 2px solid transparent;
+      }
+
+      &.low {
+        border-right: none;
+        border-left: 2px solid var(--color-bomb);
+      }
+    }
+
+    .player_data {
+      flex-direction: row-reverse;
+    }
+
+    .info_col {
+      padding: 0 2px 0 14px;
+    }
+
+    .row_top,
+    .row_bot {
+      flex-direction: row-reverse;
+    }
+
+    svg.weapon {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.teambox.right.CT .player .hp_fill:not(.low) {
+  background: rgba(92, 163, 255, 0.14);
+  border-left-color: var(--color-new-ct);
+}
+.teambox.right.T .player .hp_fill:not(.low) {
+  background: rgba(255, 194, 61, 0.16);
+  border-left-color: var(--color-new-t);
+}
+.teambox.right.CT .player .hp_fill.low,
+.teambox.right.T .player .hp_fill.low {
+  background: rgba(242, 71, 63, 0.13);
+  border-left-color: var(--color-bomb);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Compact "players alive" counter (top right)
+   ────────────────────────────────────────────────────────────── */
+.players_alive {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-radius: 3px;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+
+  &.hide {
+    opacity: 0;
+  }
+
+  .title_container {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .counter_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    > div {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .team_counter.CT {
+      color: var(--color-new-ct);
+    }
+
+    .team_counter.T {
+      color: var(--color-new-t);
+    }
+
+    .vs_counter {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-dim);
+    }
+  }
 }

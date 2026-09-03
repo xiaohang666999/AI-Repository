@@ -1,74 +1,105 @@
 .player-overview {
-	position: fixed;
-	top: 130px;
-	background-color: #000000a8;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 300px;
-	padding: 30px;
-	color: white;
-	opacity: 0;
-	transition: opacity 0.75s;
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  box-sizing: border-box;
+  padding: 26px 30px 30px;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-top: 3px solid var(--text-dim);
+  border-radius: 4px;
+  color: var(--text-strong);
+  opacity: 0;
+  transition: opacity 0.75s;
+  text-transform: uppercase;
+
+  &.show {
+    opacity: 1;
+  }
+
+  &.CT {
+    border-top-color: var(--color-new-ct);
+  }
+
+  &.T {
+    border-top-color: var(--color-new-t);
+  }
 }
-.player-overview.show {
-	opacity: 1;
-}
+
 .player-overview-stat {
-	display: flex;
-	flex-direction: column;
-	margin: 8px 0;
-	.panel {
-		height: 10px;
-		margin: 3px 0;
-		.filling {
-			height: 100%;
-		}
-	}
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+
+  .label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 3px;
+  }
+
+  .panel {
+    height: 6px;
+    border-radius: 3px;
+    margin: 3px 0;
+    overflow: hidden;
+
+    .filling {
+      height: 100%;
+    }
+  }
 }
+
 .player-overview.CT {
-	.player-overview-stat {
-		.panel {
-			.filling {
-				background-color: var(--color-new-ct);
-			}
-			background-color: #082435;
-		}
-	}
+  .player-overview-stat .panel {
+    background: rgba(92, 163, 255, 0.18);
+
+    .filling {
+      background: var(--color-new-ct);
+    }
+  }
 }
+
 .player-overview.T {
-	.player-overview-stat {
-		.panel {
-			.filling {
-				background-color: var(--color-new-t);
-			}
-			background-color: #331b00;
-		}
-	}
+  .player-overview-stat .panel {
+    background: rgba(255, 194, 61, 0.18);
+
+    .filling {
+      background: var(--color-new-t);
+    }
+  }
 }
+
 .player-overview-picture {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	img {
-		border-radius: 50%;
-		margin-bottom: 20px;
-		max-width: 170px;
-		max-height: 170px;
-	}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    border-radius: 50%;
+    margin-bottom: 16px;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+  }
 }
+
 .player-overview-username {
-	text-align: center;
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
+
 img.flag {
-	border-radius: 0;
-	margin: 0;
-	left: 0;
-	bottom: 0;
-	height: 22px;
-	margin-right: 8px;
+  border-radius: 0;
+  margin: 0;
+  height: 18px;
+  margin-right: 8px;
 }

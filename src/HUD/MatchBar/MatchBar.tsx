@@ -59,13 +59,11 @@ const Matchbar = (props: IProps) => {
       <>
         <div id={`matchbar`}>
           <TeamScore team={left} orientation={"left"} timer={left.side === "CT" ? defuseTimer : plantTimer}/>
-          <div className={`score left ${left.side}`}>{left.score}</div>
           <div id="timer" className={bo === 0 ? 'no-bo' : ''}>
             <div id={`round_timer_text`} className={isPlanted ? "hide":""}>{time}</div>
             <div id="round_now" className={isPlanted ? "hide":""}>{getRoundLabel(map.round)}</div>
             <Bomb />
           </div>
-          <div className={`score right ${right.side}`}>{right.score}</div>
           <TeamScore team={right} orientation={"right"} timer={right.side === "CT" ? defuseTimer : plantTimer} />
         </div>
       </>

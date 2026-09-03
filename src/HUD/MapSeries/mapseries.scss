@@ -1,153 +1,178 @@
+/* ──────────────────────────────────────────────────────────────
+   Map veto list + pause / timeout banners — flat CS2 style
+   ────────────────────────────────────────────────────────────── */
+
 .map_series_container {
-	position: fixed;
-	top: 100px;
-	right: 20px;
-	width: 347px;
-	display: flex;
-	opacity: 0;
-	transition: opacity 0.5s;
-	flex-direction: column;
-	font-size: 13px;
-	.veto_container {
-		display: flex;
-		background-color: rgba(0,0,0,0.8);
-		color: white;
-		align-items: center;
-        height: 40px;
-        &.active {
-            .veto_winner {
-                display: none;
-            }
-            .veto_score {
-                display: none;
-            }
+  position: fixed;
+  top: 96px;
+  right: 20px;
+  width: 360px;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  &.show {
+    opacity: 1;
+  }
+
+  .title_bar {
+    display: flex;
+    height: 22px;
+    align-items: center;
+    padding: 0 10px;
+    background: var(--panel-0);
+    border: 1px solid var(--stroke);
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+
+    > div {
+      flex: 1;
+      text-align: center;
+
+      &.picked {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  .veto_container {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    background: var(--panel-0);
+    border: 1px solid var(--stroke);
+    border-radius: 3px;
+    overflow: hidden;
+    color: var(--text-mid);
+
+    &.active {
+      border-color: var(--stroke-strong);
+      box-shadow: inset 3px 0 0 var(--color-bomb);
+    }
+
+    .veto_map_name {
+      width: 118px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-strong);
+      background: var(--panel-1);
+      border-right: 1px solid var(--stroke);
+    }
+
+    .veto_picker,
+    .veto_winner {
+      width: 60px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          max-width: 20px;
+          max-height: 20px;
         }
-		.veto_map_name {
-			width: 116px;
-			text-transform: uppercase;
-			background-color: rgba(255,255,255,1);
-			color: black;
-			height: 100%;
-			display: flex;
-			font-family: Montserrat;
-			font-weight: 700;
-			align-items: center;
-			justify-content: center;
-		}
-		div {
-			img {
-				max-height: 30px;
-				max-width: 30px;
-			}
-		}
-		.veto_picker {
-			width: 77px;
-			text-align: center;
-		}
-		.veto_winner {
-			width: 77px;
-			text-align: center;
-		}
-		.active_container {
-			width: 154px;
-			height: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			.active {
-				background: white;
-				color: black;
-				width: 117px;
-				height: 25px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 9px;
-				font-weight: 700;
-				font-family: Montserrat;
-				text-transform: uppercase;
-			}
-		}
-		&:not(.active) {
-			.active_container {
-				display: none;
-			}
-		}
-		.veto_score {
-			width: 77px;
-			text-align: center;
-			font-size: 14px;
-		}
-		.logo {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-	}
-	.title_bar {
-		display: flex;
-		background-color: rgba(0,0,0,0.64);
-		height: 25px;
-		color: white;
-		border-radius: 6px 6px 0 0;
-		font-family: Montserrat;
-		font-size: 13px;
-		font-weight: 600;
-		margin-bottom: 2px;
-		div {
-			width: 77px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		.picked {
-			margin-left: auto;
-		}
+      }
     }
-    &.show {
-        opacity: 1;
+
+    .veto_score {
+      width: 62px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-strong);
+      border-left: 1px solid var(--stroke);
     }
+
+    .active_container {
+      flex: 1;
+      display: none;
+
+      .active {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: #141414;
+        background: var(--color-bomb);
+      }
+    }
+
+    &.active .active_container {
+      display: flex;
+    }
+  }
 }
 
+/* ── pause / timeout center banners ────────────────────────── */
+#pause,
 #timeout {
-	text-transform: uppercase;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 150px;
-	background-color: var(--sub-panel-color);
-	width: 600px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100px;
-	font-size: 35px;
-	transition: opacity 1.5s;
-	opacity: 0;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 180px;
+  z-index: 40;
+  min-width: 380px;
+  height: 58px;
+  padding: 0 42px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-radius: 3px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  color: var(--text-strong);
+  pointer-events: none;
+
+  &.show {
+    opacity: 1;
+  }
+
+  &.t {
+    color: var(--color-new-t);
+    border-top: 3px solid var(--color-new-t);
+  }
+
+  &.ct {
+    color: var(--color-new-ct);
+    border-top: 3px solid var(--color-new-ct);
+  }
 }
-#pause {
-	text-transform: uppercase;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: 150px;
-	background-color: var(--sub-panel-color);
-	width: 600px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100px;
-	font-size: 35px;
-	transition: opacity 1.5s;
-	opacity: 0;
-	color: white;
-}
-#timeout.show, #pause.show {
-	opacity: 1;
-}
-#timeout.t {
-	color: var(--color-new-t);
-}
-#timeout.ct {
-	color: var(--color-new-ct);
+
+#pause.show {
+  border-top: 3px solid var(--text-dim);
 }

@@ -1,221 +1,258 @@
+/* ──────────────────────────────────────────────────────────────
+   Freezetime boxes (utility / side / money) — flat CS2 style
+   Aligned to the same gutter/width as the bottom player boxes.
+   ────────────────────────────────────────────────────────────── */
+
 .boxes {
-	position: fixed;
-	bottom: 384px;
+  position: fixed;
+  bottom: 340px;
+  width: 470px;
+  z-index: 4;
+
+  &.left {
+    left: 16px;
+  }
+
+  &.right {
+    right: 16px;
+  }
 }
-.boxes.left {
-	left: 10px;
-}
-.boxes.right {
-	right: 10px;
-}
-.boxes.hide {
-	.utilitybox {
-		height: 0;
-		opacity: 0;
-	}
-	.moneybox {
-		height: 0;
-		opacity: 0;
-	}
-	.sidebox {
-		height: 0;
-		opacity: 0;
-	}
-}
-.utilitybox.hide {
-	height: 0;
-	opacity: 0;
-}
-.moneybox.hide {
-	height: 0;
-	opacity: 0;
-}
-.sidebox.hide {
-	height: 0;
-	opacity: 0;
-}
+
+/* shared card shell */
+.utilitybox,
+.moneybox,
 .sidebox {
-	width: 415px;
-	height: 70px;
-	display: flex;
-	flex-direction: row;
-	opacity: 1;
-	transition: all 0.75s;
-	background-color: var(--sub-panel-color);
-	margin-bottom: 4px;
-	margin-top: 4px;
-	align-items: center;
-	.title_container {
-		color: var(--white-full);
-		height: 60px;
-		width: 100%;
-		font-size: 20px;
-		display: flex;
-		flex-direction: column;
-		>div {
-			flex: 1;
-			display: flex;
-			align-items: center;
-			font-weight: 600;
-			font-size: 18px;
-		}
-	}
-	.image_container {
-		width: 70px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		img {
-			max-width: 70px;
-			max-height: 70px;
-		}
-	}
+  width: 470px;
+  box-sizing: border-box;
+  background: var(--panel-0);
+  border: 1px solid var(--stroke);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: all 0.45s ease;
+  opacity: 1;
+  margin-top: 6px;
+
+  &.hide {
+    opacity: 0;
+    height: 0 !important;
+    margin-top: 0;
+    border-width: 0;
+    pointer-events: none;
+  }
 }
+
+/* ── Utility level ─────────────────────────────────────────── */
 .utilitybox {
-	width: 415px;
-	height: 70px;
-	display: flex;
-	flex-direction: row;
-	opacity: 1;
-	transition: all 0.75s;
-	background-color: var(--sub-panel-color);
-	margin-bottom: 4px;
-	margin-top: 4px;
-	flex-direction: column;
-	margin-bottom: 4px;
-	border-radius: 20px 20px 0 0;
-	.title_container {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		font-weight: 600;
-		font-size: 16px;
-		height: 24px;
-	}
-	.title {
-		height: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.grenades_container {
-		display: flex ;
-		
-		flex: 1;
-		height: 46px;
-		.grenade_container {
-			display: flex;
-			flex: 1;
-			color: white;
-			align-items: center;
-			font-weight: 600;
-			font-size: 18px;
-			justify-content: center;
-			
-			svg {
-				height: 30px;
-				width:auto;				
-			}
-		}
-	}
+  height: 62px;
+  display: flex;
+  flex-direction: column;
+
+  &.CT {
+    border-top: 2px solid var(--color-new-ct);
+  }
+
+  &.T {
+    border-top: 2px solid var(--color-new-t);
+  }
+
+  .title_container {
+    flex: 0 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--stroke);
+
+    .subtitle {
+      color: var(--text-strong);
+    }
+  }
+
+  .grenades_container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+
+    .grenade_container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      .grenade_image {
+        display: flex;
+        align-items: center;
+
+        svg {
+          height: 20px;
+          width: auto;
+          opacity: 0.85;
+        }
+      }
+
+      .grenade_amount {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--text-strong);
+      }
+
+      & + .grenade_container {
+        border-left: 1px solid var(--stroke);
+      }
+    }
+  }
 }
+
+/* ── Money / economy ───────────────────────────────────────── */
 .moneybox {
-	width: 415px;
-	height: 70px;
-	display: flex;
-	flex-direction: row;
-	opacity: 1;
-	transition: all 0.75s;
-	background-color: var(--sub-panel-color);
-	margin-bottom: 4px;
-	margin-top: 4px;
-	font-weight: 600;
-	margin-bottom: 0px;
-	.money_container {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		color: white;
-		.title {
-			height: 25px;
-			display: flex;
-			align-items: flex-end;
-			font-size: 16px;
-			justify-content: center;
-		}
-		.value {
-			flex: 1;
-			display: flex;
-			align-items: center;
-			font-size: 18px;
-			justify-content: center;
-		}
-	}
-	.loss_container {
-		width: 4px;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: center;
-		.loss-box {
-			height: 13px;
-			width: 100%;
-			background-color: #515254;
-			margin-top: 1px;
-			margin-bottom: 1px;
-		}
-		.loss-box.active.CT {
-			background-color: var(--color-new-ct);
-		}
-		.loss-box.active.T {
-			background-color: var(--color-new-t);
-		}
-	}
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  &.CT {
+    border-top: 2px solid var(--color-new-ct);
+  }
+
+  &.T {
+    border-top: 2px solid var(--color-new-t);
+  }
+
+  &.right {
+    flex-direction: row-reverse;
+  }
+
+  .loss_container {
+    width: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 0 12px;
+
+    .loss-box {
+      width: 10px;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--panel-2);
+      transition: background 0.3s;
+
+      &.active.CT {
+        background: var(--color-new-ct);
+      }
+
+      &.active.T {
+        background: var(--color-new-t);
+      }
+    }
+  }
+
+  .money_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+
+    & + .money_container {
+      border-left: 1px solid var(--stroke);
+    }
+
+    .title {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .value {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-strong);
+      white-space: nowrap;
+    }
+  }
 }
-.sidebox.right {
-	flex-direction: row-reverse;
-	.title_container {
-		>div {
-			flex-direction: row-reverse;
-			text-align: right;
-			padding-right: 10px;
-		}
-	}
+
+.moneybox.CT .money_container:first-of-type .value,
+.moneybox.T .money_container:first-of-type .value {
+  color: var(--color-moneys);
 }
-.sidebox.left {
-	.title_container {
-		>div {
-			flex-direction: row;
-			text-align: left;
-			padding-left: 10px;
-		}
-	}
-}
-.utilitybox.CT {
-	.title {
-		color: var(--color-new-ct);
-	}
-}
-.utilitybox.T {
-	.title {
-		color: var(--color-new-t);
-	}
-}
-.moneybox.right {
-	flex-direction: row-reverse;
-}
-.moneybox.CT {
-	.money_container {
-		.title {
-			color: var(--color-new-ct);
-		}
-	}
-}
-.moneybox.T {
-	.money_container {
-		.title {
-			color: var(--color-new-t);
-		}
-	}
+
+/* ── Custom side boxes ─────────────────────────────────────── */
+.sidebox {
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+
+  &.right {
+    flex-direction: row-reverse;
+    text-align: right;
+
+    .title_container > div {
+      align-items: flex-end;
+    }
+  }
+
+  .title_container {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+
+    > div {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-strong);
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .subtitle {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .image_container {
+    flex: 0 0 54px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 42px;
+      max-height: 42px;
+      object-fit: contain;
+    }
+  }
 }
