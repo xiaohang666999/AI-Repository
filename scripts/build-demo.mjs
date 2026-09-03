@@ -10,8 +10,8 @@ const outDir = path.join(root, "demo-mode");
 console.log("[demo] building standalone preview...");
 execSync("npx vite build --config vite.demo.config.ts", { cwd: root, stdio: "inherit" });
 
-const builtHtml = path.join(outDir, "demo-shell.html");
-const finalHtml = path.join(outDir, "index.html");
+const builtHtml = path.join(outDir, "index.html");
+const finalHtml = builtHtml;
 if (!existsSync(builtHtml)) {
   throw new Error(`Expected built html not found: ${builtHtml}`);
 }
@@ -51,7 +51,6 @@ const patchedHtml = html.replace(
 renameSync(jsFile, path.join(outDir, "assets", "index-demo.js"));
 
 writeFileSync(finalHtml, patchedHtml, "utf8");
-unlinkSync(builtHtml);
 
 // Remove files copied from public/ that are not needed by the standalone demo.
 for (const extra of ["hud.json", "keybinds.json", "panel.json", "preview.png", "thumb.png"]) {

@@ -8,6 +8,7 @@ import path from "path";
 // classic script so file:// works without a dev server).
 export default defineConfig({
   plugins: [react(), svgr()],
+  root: path.resolve(__dirname, "demo-src"),
   base: "./",
   server: {
     host: "0.0.0.0",
@@ -26,14 +27,14 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "demo-mode",
+    outDir: path.resolve(__dirname, "demo-mode"),
     emptyOutDir: true,
     sourcemap: false,
     minify: "esbuild",
     cssCodeSplit: true,
     rollupOptions: {
       input: {
-        index: path.resolve(__dirname, "demo-shell.html"),
+        index: path.resolve(__dirname, "demo-src", "index.html"),
       },
       output: {
         format: "es",
