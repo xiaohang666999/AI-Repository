@@ -4,12 +4,15 @@
 	position: fixed;
 	display: flex;
 	flex-direction: column;
-	right: 10px;
+	right: 16px;
 	top: 375px;
-	background-color: #000000a8;
+	background-color: var(--panel);
+	border: 1px solid var(--stroke);
+	border-radius: 6px;
+	overflow: hidden;
 	text-transform: uppercase;
 	width: 250px;
-	color: white;
+	color: var(--text);
 }
 .match-overview.show {
 	opacity: 1;
@@ -22,21 +25,26 @@
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
-		padding: 5px 0;
+		padding: 8px 0;
+		gap: 2px;
 		&:not(.match-overview-vs) {
-			background-color: rgba(0,0,0,0.7);
+			background-color: var(--panel-2);
 		}
 	}
 }
 .match-overview-title {
 	text-align: center;
-	font-weight: 600;
-	background-color: rgba(0,0,0,0.5);
-	padding: 3px 0;
+	font-weight: 700;
+	letter-spacing: 1px;
+	background-color: var(--panel-2);
+	padding: 6px 0;
+	font-size: 12px;
+	color: var(--text-dim);
 }
 .match-overview-vs {
-	width: 20px;
+	width: 22px;
 	flex: unset;
-	background-color: rgba(0,0,0,0.6);
-	font-size: 30px;
+	background-color: var(--panel);
+	font-size: 18px;
+	color: var(--text-dim);
 }

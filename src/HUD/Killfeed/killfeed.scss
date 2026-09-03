@@ -5,11 +5,11 @@
 	}
 	5% {
 		opacity: 1;
-		height: 43px;
+		height: 36px;
 	}
 	95% {
 		opacity: 1;
-		height: 43px;
+		height: 36px;
 	}
 	100% {
 		opacity: 0;
@@ -19,94 +19,100 @@
 
 .killfeed {
     position: fixed;
-    right: 20px;
-    top: 93px;
+    right: 16px;
+    top: 116px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    z-index: 15;
+
     .single_kill_container {
         animation: KillLifeCycle 5s linear 1;
-        animation-fill-mode: forwards;/**/
+        animation-fill-mode: forwards;
         overflow: hidden;
     }
+
     .single_kill {
         display: flex;
         flex-direction: row;
-        background-color: rgba(0,0,0,0.64);
-        margin-bottom:5px;
-        color:white;
-        height: 38px;
-        font-size: 14px;
-        overflow: hidden;
         align-items: center;
-        font-family: Montserrat;
-        font-weight:500;
-        padding-left:15px;
-        padding-right:15px;
+        background-color: rgba(10, 12, 15, 0.85);
+        border: 1px solid var(--stroke);
+        border-radius: 4px;
+        margin-bottom: 5px;
+        color: var(--text);
+        height: 34px;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 0 12px;
+        box-sizing: border-box;
+        gap: 8px;
 
         > svg {
-            max-height: 24px;
-            max-width: 28px;
+            max-height: 18px;
+            max-width: 22px;
+            fill: rgba(255, 255, 255, 0.9);
         }
 
         div {
-            margin:10px;
-            display:flex;
-            align-items:center;
+            display: flex;
+            align-items: center;
+            margin: 0;
         }
 
         svg.weapon {
-            height: 28px;
-            filter: invert(0%);
+            height: 24px;
+            width: auto;
         }
 
         .CT {
             color: var(--color-new-ct);
         }
-
         .T {
             color: var(--color-new-t);
         }
 
-        .way .headshot, .way .wallbang, .flash_assist, .flash_kill, .smoke_kill, .noscope_kill {
-            max-height:20px;
-            margin-left:5px;
+        .way {
+            text-align: center;
+            gap: 2px;
+
+            .headshot,
+            .wallbang,
+            .noscope_kill {
+                max-height: 16px;
+                margin: 0;
+            }
+            .smoke_kill {
+                max-height: 16px;
+            }
+        }
+
+        .killer_name,
+        .victim_name,
+        .assister_name {
+            white-space: nowrap;
         }
 
         .flash_assist {
-            margin-left: 0;
-            margin-right:5px;
+            max-height: 14px;
+            margin: 0;
         }
 
         .plus {
-            margin-left: 0;
-            font-weight: 600;
-            margin-right: 8px;
+            font-weight: 700;
+            color: var(--text-dim);
         }
 
-        .assister_name {
-            margin-left:0px;
-        }
-
-        .way {
-            text-align: center;
-
-            .wallbang {
-                max-height: 24px;
-            }
-            svg:not(.weapon) {
-                max-height: 24px;
-                max-width: 28px;
-            }
-        }
         &.hide {
-            transition:height 1s, padding 1s,  opacity 1s, margin 1s;
-            opacity:0;
-            height:0;
-            margin:0;
+            transition: height 0.6s, padding 0.6s, opacity 0.6s, margin 0.6s;
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border-width: 0;
         }
         &.show {
-            opacity:1;
+            opacity: 1;
         }
     }
 }

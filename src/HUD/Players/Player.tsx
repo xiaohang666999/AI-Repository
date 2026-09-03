@@ -1,6 +1,5 @@
 import * as I from "csgogsi";
 import Weapon from "./../Weapon/Weapon";
-import Avatar from "./Avatar";
 import Armor from "./../Indicators/Armor";
 import Bomb from "./../Indicators/Bomb";
 import Defuse from "./../Indicators/Defuse";
@@ -67,63 +66,53 @@ const arePlayersEqual = (playerOne: I.Player, playerTwo: I.Player) => {
 
   return false;
 }
-const Player = ({ player, isObserved }: IProps) => {
 
+const Player = ({ player, isObserved }: IProps) => {
   const weapons = player.weapons.map(weapon => ({ ...weapon, name: weapon.name.replace("weapon_", "") }));
   const primary = weapons.filter(weapon => !['C4', 'Pistol', 'Knife', 'Grenade', undefined].includes(weapon.type))[0] || null;
   const secondary = weapons.filter(weapon => weapon.type === "Pistol")[0] || null;
-  const grenades = weapons.filter(weapon => weapon.type === "Grenade");
-  const isLeft = player.team.orientation === "left";
 
-  const zeus = weapons.find(weapon => weapon.name === "taser");
+  const health = player.state.health;
+  const isDead = health === 0;
+  const hpState = health > 50 ? "good" : health > 25 ? "mid" : "low";
+
+  // Icon of the weapon that is actually in hand (falls back to best gun).
+  const heldWeapon = weapons.find(weapon => weapon.state === "active") || primary || secondary || null;
 
   return (
-    <div className={`player ${player.state.health === 0 ? "dead" : ""} ${isObserved ? 'active' : ''}`}>
-      <div className="player_data">
-        <Avatar teamId={player.team.id} steamid={player.steamid} url={player.avatar} height={57} width={57} showSkull={false} showCam={false} sidePlayer={true} />
-        <div className="dead-stats">
-          <div className="labels">
-            <div className="stat-label">K</div>
-            <div className="stat-label">A</div>
-            <div className="stat-label">D</div>
+    <div className={`player ${isDead ? "dead" : ""} ${isObserved ? 'active' : ''}`}>
+      <div className="card">
+        <div className={`hp_fill ${hpState} ${isDead ? "none" : ""}`} style={{ width: `${Math.max(health, 0)}%` }}></div>
+        <div className="player_data">
+          <div className="health">
+            <span className="value">{health}</span>
           </div>
-          <div className="values">
-            <div className="stat-value">{player.stats.kills}</div>
-            <div className="stat-value">{player.stats.assists}</div>
-            <div className="stat-value">{player.stats.deaths}</div>
-          </div>
-        </div>
-        <div className="player_stats">
-          <div className="row">
-            <div className="health">
-              {player.state.health}
-            </div>
-            <div className="username">
-              <div>{isLeft ? <span>{player.observer_slot}</span> : null} {player.name} {!isLeft ? <span>{player.observer_slot}</span> : null}</div>
-              {primary || secondary ? <Weapon weapon={primary ? primary.name : secondary.name} active={primary ? primary.state === "active" : secondary.state === "active"} /> : ""}
-              {player.state.round_kills ? <div className="roundkills-container">{player.state.round_kills}</div> : null}
-            </div>
-          </div>
-          <div className={`hp_bar ${player.state.health <= 20 ? 'low' : ''}`} style={{ width: `${player.state.health}%` }}></div>
-          <div className="row">
-            <div className="armor_and_utility">
+          <div className="username">
+            <div className="name">{player.name}</div>
+            <div className="indicators">
               <Bomb player={player} />
-              <Armor health={player.state.health} armor={player.state.armor} helmet={player.state.helmet} />
+              <Armor health={health} armor={player.state.armor} helmet={player.state.helmet} />
               <Defuse player={player} />
             </div>
-            <div className="money">${player.state.money}</div>
-            {zeus ? <Weapon className={`zeus ${player.team.orientation}`} weapon="taser" active={zeus.state === "active"} /> : null}
-            <div className="grenades">
-              {grenades.map(grenade => (
-                [
-                  <Weapon key={`${grenade.name}-${grenade.state}`} weapon={grenade.name} active={grenade.state === "active"} isGrenade />,
-                  grenade.ammo_reserve === 2 ? <Weapon key={`${grenade.name}-${grenade.state}-double`} weapon={grenade.name} active={false} isGrenade /> : null,
-                ]
-              ))}
-            </div>
-            <div className="secondary_weapon">{primary && secondary ? <Weapon weapon={secondary.name} active={secondary.state === "active"} /> : ""}</div>
           </div>
-          <div className="active_border"></div>
+          <div className="weapon_icon">
+            {heldWeapon ? <Weapon weapon={heldWeapon.name} active={heldWeapon.state === "active"} /> : null}
+          </div>
+          <div className="money">${player.state.money}</div>
+        </div>
+        <div className="dead_stats">
+          <div className="ds_cell">
+            <div className="label">K</div>
+            <div className="value">{player.stats.kills}</div>
+          </div>
+          <div className="ds_cell">
+            <div className="label">A</div>
+            <div className="value">{player.stats.assists}</div>
+          </div>
+          <div className="ds_cell">
+            <div className="label">D</div>
+            <div className="value">{player.stats.deaths}</div>
+          </div>
         </div>
       </div>
     </div>
